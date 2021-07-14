@@ -1,0 +1,169 @@
+{
+	"AWSTemplateFormatVersion" : "2010-09-09",
+	"Transform" : "AWS::Serverless-2016-10-31",
+	"Description" : "An AWS Serverless Application.",
+
+	"Resources" : {
+
+		"GetServerAddress" : {
+			"Type" : "AWS::Serverless::Function",
+			"Properties": {
+				"Handler": "Router::Router.Functions::GetServerAddress",
+				"Runtime": "dotnetcore3.1",
+				"CodeUri": "",
+				"MemorySize": 256,
+				"Timeout": 30,
+				"Role": null,
+				"Policies": [ "AWSLambdaBasicExecutionRole" ],
+				"Events": {
+					"RootGet": {
+						"Type": "Api",
+						"Properties": {
+							"Path": "/get-server-address",
+							"Method": "POST"
+						}
+					}
+				}
+			}
+		},
+		
+		"GetRoutingConfiguration" : {
+        	"Type" : "AWS::Serverless::Function",
+        	"Properties": {
+        		"Handler": "Router::Router.Functions::GetRoutingConfiguration",
+        		"Runtime": "dotnetcore3.1",
+        		"CodeUri": "",
+        		"MemorySize": 256,
+        		"Timeout": 30,
+        		"Role": null,
+        		"Policies": [ "AWSLambdaBasicExecutionRole" ],
+        		"Events": {
+        			"RootGet": {
+        				"Type": "Api",
+        				"Properties": {
+        					"Path": "/get-routing-configuration",
+        					"Method": "GET"
+        				}
+        			}
+        		}
+        	}
+        },
+        		
+        "SetRoutingConfiguration" : {
+        	"Type" : "AWS::Serverless::Function",
+        	"Properties": {
+        		"Handler": "Router::Router.Functions::SetRoutingConfiguration",
+        		"Runtime": "dotnetcore3.1",
+        		"CodeUri": "",
+        		"MemorySize": 256,
+        		"Timeout": 30,
+        		"Role": null,
+        		"Policies": [ "AWSLambdaBasicExecutionRole" ],
+        		"Events": {
+        			"RootGet": {
+        				"Type": "Api",
+        				"Properties": {
+        					"Path": "/set-routing-configuration",
+        					"Method": "POST"
+        				}
+        			}
+        		}
+        	}
+        },
+
+		"GetRouteTargetConfiguration" : {
+			"Type" : "AWS::Serverless::Function",
+			"Properties": {
+				"Handler": "Router::Router.Functions::GetRouteTargetConfiguration",
+				"Runtime": "dotnetcore3.1",
+				"CodeUri": "",
+				"MemorySize": 256,
+				"Timeout": 30,
+				"Role": null,
+				"Policies": [ "AWSLambdaBasicExecutionRole" ],
+				"Events": {
+					"RootGet": {
+						"Type": "Api",
+						"Properties": {
+							"Path": "/get-route-target-configuration",
+							"Method": "GET"
+						}
+					}
+				}
+			}
+		},
+
+		"SetRouteTargetConfiguration" : {
+			"Type" : "AWS::Serverless::Function",
+			"Properties": {
+				"Handler": "Router::Router.Functions::SetRouteTargetConfiguration",
+				"Runtime": "dotnetcore3.1",
+				"CodeUri": "",
+				"MemorySize": 256,
+				"Timeout": 30,
+				"Role": null,
+				"Policies": [ "AWSLambdaBasicExecutionRole" ],
+				"Events": {
+					"RootGet": {
+						"Type": "Api",
+						"Properties": {
+							"Path": "/set-route-target-configuration",
+							"Method": "POST"
+						}
+					}
+				}
+			}
+		},
+        		
+        "SetMaintenanceOn" : {
+        	"Type" : "AWS::Serverless::Function",
+        	"Properties": {
+        		"Handler": "Router::Router.Functions::SetMaintenanceOn",
+        		"Runtime": "dotnetcore3.1",
+        		"CodeUri": "",
+        		"MemorySize": 256,
+        		"Timeout": 30,
+        		"Role": null,
+        		"Policies": [ "AWSLambdaBasicExecutionRole" ],
+        		"Events": {
+        			"RootGet": {
+        				"Type": "Api",
+        				"Properties": {
+        					"Path": "/set-maintenance-on",
+        					"Method": "POST"
+        				}
+        			}
+        		}
+        	}
+        },
+        		
+        "SetMaintenanceOff" : {
+        	"Type" : "AWS::Serverless::Function",
+        	"Properties": {
+        		"Handler": "Router::Router.Functions::SetMaintenanceOff",
+        		"Runtime": "dotnetcore3.1",
+        		"CodeUri": "",
+        		"MemorySize": 256,
+        		"Timeout": 30,
+        		"Role": null,
+        		"Policies": [ "AWSLambdaBasicExecutionRole" ],
+        		"Events": {
+        			"RootGet": {
+        				"Type": "Api",
+        				"Properties": {
+        					"Path": "/set-maintenance-off",
+        					"Method": "POST"
+        				}
+        			}
+        		}
+        	}
+        }
+	},
+
+	"Outputs" : {
+		"ApiURL" : {
+			"Description" : "API endpoint URL for Prod environment",
+			"Value" : { "Fn::Sub" : "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/" }
+		}
+	}
+}

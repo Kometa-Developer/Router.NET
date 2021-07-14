@@ -351,3 +351,6 @@ MigrationBackup/
 
 # .idea
 .idea/*
+
+# aws
+.aws-sam/*

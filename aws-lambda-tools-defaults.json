@@ -1,0 +1,10 @@
+﻿{
+  "profile": "default",
+  "region" : "eu-central-1",
+  "configuration": "Release",
+  "framework": "netcoreapp3.1",
+  "s3-bucket": "router-api",
+  "s3-prefix": "Router/",
+  "template": "serverless.template",
+  "template-parameters": ""
+}
