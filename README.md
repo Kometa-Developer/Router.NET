@@ -56,7 +56,7 @@ sam local start-api
 Simply run 
 
 ```bash
-docker run -p 8000:8000 -d --rm --network amazon/dynamodb-local
+docker run -p 8000:8000 -d --rm amazon/dynamodb-local
 ```
 
 to execute DynamoDB locally
