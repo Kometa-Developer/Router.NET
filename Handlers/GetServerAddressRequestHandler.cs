@@ -50,7 +50,8 @@ namespace Router.Handlers
 
             routesArray = routesArray
                 .GroupBy(x => x.Platform)
-                .First(x => x.Key == addressRequest.ClientPlatform || addressRequest.ClientPlatform == "any")
+                .First(x => x.Key == addressRequest.ClientPlatform 
+                            || addressRequest.ClientPlatform == "any")
                 .ToArray();
 
             if (routesArray.Length == 0)

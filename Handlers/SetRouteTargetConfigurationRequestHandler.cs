@@ -24,7 +24,7 @@ namespace Router.Handlers
                 if (string.IsNullOrEmpty(e.Target.Trim()))
                     return SetRouteTargetConfigurationResponse.ReturnCode.BadConfiguration;
 
-                if (string.IsNullOrEmpty(e.Address.Trim()))
+                if (string.IsNullOrEmpty(e.Address.Trim()) && !e.Maintenance)
                     return SetRouteTargetConfigurationResponse.ReturnCode.BadConfiguration;
             }
 

@@ -54,15 +54,8 @@ namespace Router.ConfigurationStorage.DynamoDb
             }
         };
 
-        public static ScanCondition[] SearchAll() => new[]
-        {
-            new ScanCondition(
-                nameof(Target),
-                ScanOperator.NotEqual,
-                "None"
-            )
-        };
-        
+        public static ScanCondition[] SearchAll() => new ScanCondition[0];
+
         public static ScanCondition[] SearchRouteTarget(string target) => new[]
         {
             new ScanCondition(

@@ -18,16 +18,23 @@ namespace Router.ConfigurationStorage
         private readonly DynamoDBContext _context;
 
         private const string TablePrefix = "router-";
-        private const string AWSAccessKeyId = "";
-        private const string AWSSecret = "";
-        
-        private readonly RegionEndpoint _endpoint = RegionEndpoint.EUCentral1;
-        
+    
         public DynamoDbRoutingConfigurationStorage()
         {
+            // This part is used for the local db connection
+            var config = new AmazonDynamoDBConfig();
+            _client = new AmazonDynamoDBClient(config);
+            
+            // This part is used for the remote db connection
+            /*
+            const string AWSAccessKeyId = "";
+            const string AWSSecret = "";
+        
+            var endpoint = RegionEndpoint.EUCentral1;        
+             
             var config = new AmazonDynamoDBConfig
             {
-                RegionEndpoint = _endpoint,
+                RegionEndpoint = endpoint,
                 Timeout = TimeSpan.FromSeconds(15)
             };
             _client = new AmazonDynamoDBClient(
@@ -35,6 +42,8 @@ namespace Router.ConfigurationStorage
                 AWSSecret, 
                 config
             );
+            */
+            
             _context = new DynamoDBContext(_client, new DynamoDBContextConfig { TableNamePrefix = TablePrefix });
         }
         
