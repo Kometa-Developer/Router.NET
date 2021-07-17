@@ -25,8 +25,9 @@ namespace Router.Handlers.Abstraction
                     {
                         request = JsonConvert.DeserializeObject<TRequest>(body);
                     }
-                    catch
+                    catch(Exception e)
                     {
+                        Console.WriteLine(e);
                         return RespondWithError(BadRequest);
                     }
                 }
@@ -37,8 +38,9 @@ namespace Router.Handlers.Abstraction
                     ? await ProcessValidRequest(request, configurationStorage)
                     : RespondWithError(code);
             }
-            catch
+            catch(Exception e)
             {
+                Console.WriteLine(e);
                 return RespondWithError(InternalServerError);
             }
         }
