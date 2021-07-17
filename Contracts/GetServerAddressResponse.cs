@@ -4,13 +4,13 @@ namespace Router.Contracts
     {
         public enum ReturnCode
         {
-            Ok,
-            UpdateRequired,
-            IncorrectVersion,
-            IncorrectServer,
-            IncorrectPlatform,
-            Maintenance,
-            InternalServerError
+            Ok = 0,
+            UpdateRequired = 1,
+            IncorrectVersion = 2,
+            IncorrectServer = 3,
+            IncorrectPlatform = 4,
+            Maintenance = 5,
+            InternalServerError = 6
         }
         
         public ReturnCode Code { get; }
