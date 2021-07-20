@@ -15,13 +15,14 @@ namespace Router.ConfigurationStorage.Mongo
         
         public string Platform { get; set; }
         
-        public string ClientVersion { get; set; }
+        public string FromVersion { get; set; }
+        public string ToVersion { get; set; }
         
         public string RouteTarget { get; set; }
         
         [JsonConverter(typeof(StringEnumConverter))]
         [BsonRepresentation(BsonType.String)] 
-        public UpdateMode UpdateMode { get; set; }
+        public RouteMode RouteMode { get; set; }
         
         public RoutingEntity()
         {
@@ -30,16 +31,18 @@ namespace Router.ConfigurationStorage.Mongo
         public RoutingEntity(
             string server, 
             string platform, 
-            string clientVersion, 
+            string fromVersion, 
+            string toVersion, 
             string routeTarget, 
-            UpdateMode updateMode
+            RouteMode routeMode
         )
         {
             Server = server;
             Platform = platform;
-            ClientVersion = clientVersion;
+            FromVersion = fromVersion;
+            ToVersion = toVersion;
             RouteTarget = routeTarget;
-            UpdateMode = updateMode;
+            RouteMode = routeMode;
         }
     }
 }

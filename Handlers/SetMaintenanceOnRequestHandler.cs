@@ -12,11 +12,12 @@ namespace Router.Handlers
         protected override SetMaintenanceOnResponse.ReturnCode BadRequest => SetMaintenanceOnResponse.ReturnCode.BadRequest;
         protected override SetMaintenanceOnResponse.ReturnCode InternalServerError => SetMaintenanceOnResponse.ReturnCode.InternalServerError;
         
-        protected override SetMaintenanceOnResponse.ReturnCode Validate(SetMaintenanceOnRequest request)
+        protected override Task<SetMaintenanceOnResponse.ReturnCode> Validate(
+            SetMaintenanceOnRequest request, IRoutingConfigurationReadOnlyStorage storage)
         {
-            return string.IsNullOrEmpty(request.RouteTarget.Trim())
+            return Task.FromResult(string.IsNullOrEmpty(request.RouteTarget.Trim())
                 ? SetMaintenanceOnResponse.ReturnCode.BadRequest
-                : SetMaintenanceOnResponse.ReturnCode.Ok;
+                : SetMaintenanceOnResponse.ReturnCode.Ok);
         }
 
         protected override SetMaintenanceOnResponse RespondWithError(SetMaintenanceOnResponse.ReturnCode errorCode)

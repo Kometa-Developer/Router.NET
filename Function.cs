@@ -1,4 +1,3 @@
-using Amazon;
 using Amazon.Lambda.APIGatewayEvents;
 using Amazon.Lambda.Core;
 using Router.ConfigurationStorage;
@@ -10,7 +9,7 @@ namespace Router
     {
         private const string Token = "token";
         
-        private readonly IRoutingConfigurationStorage _storage = new MockRoutingConfigurationStorage();
+        private readonly IRoutingConfigurationStorage _storage = new DynamoDbRoutingConfigurationStorage();
         
         public Functions()
         {

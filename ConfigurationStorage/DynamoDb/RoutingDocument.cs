@@ -15,9 +15,10 @@ namespace Router.ConfigurationStorage.DynamoDb
         
         public string Server { get; set; }
         public string Platform { get; set; }
-        public string ClientVersion { get; set; }
+        public string FromVersion { get; set; }
+        public string ToVersion { get; set; }
         public string RouteTarget { get; set; }
-        public UpdateMode UpdateMode { get; set; }
+        public RouteMode RouteMode { get; set; }
 
         public RoutingDocument()
         {
@@ -27,16 +28,18 @@ namespace Router.ConfigurationStorage.DynamoDb
         public RoutingDocument(
             string server,
             string platform,
-            string clientVersion,
+            string fromVersion,
+            string toVersion,
             string routeTarget,
-            UpdateMode updateMode
+            RouteMode routeMode
         ) : this()
         {
             Server = server;
             Platform = platform;
-            ClientVersion = clientVersion;
+            FromVersion = fromVersion;
+            ToVersion = toVersion;
             RouteTarget = routeTarget;
-            UpdateMode = updateMode;
+            RouteMode = routeMode;
         }
         
         public static CreateTableRequest CreateRequest(string tablePrefix) => new CreateTableRequest
@@ -66,15 +69,8 @@ namespace Router.ConfigurationStorage.DynamoDb
                 }
             }
         };
-        
-        public static ScanCondition[] SearchAll() => new[]
-        {
-            new ScanCondition(
-                nameof(Server),
-                ScanOperator.NotEqual,
-                string.Empty
-            )
-        };
+
+        public static ScanCondition[] SearchAll() => new ScanCondition[0];
         
         public static ScanCondition[] SearchServerType(string serverType) => new[]
         {

@@ -30,45 +30,51 @@ namespace Router.Model.Configuration
                     "development",
                     "ios",
                     "0.0.0",
+                    toVersion:"",
                     "development",
-                    UpdateMode.UpToDate
+                    RouteMode.Allow
                 ),
                 new RoutingConfigurationEntry(
                     "development",
                     "android",
                     "0.0.0",
+                    toVersion:"",
                     "development",
-                    UpdateMode.UpToDate
+                    RouteMode.Allow
                 ),
 
                 new RoutingConfigurationEntry(
                     "review",
                     "ios",
                     "0.0.0",
+                    toVersion:"",
                     "review",
-                    UpdateMode.UpToDate
+                    RouteMode.Allow
                 ),
                 new RoutingConfigurationEntry(
                     "review",
                     "android",
                     "0.0.0",
+                    toVersion:"",
                     "review",
-                    UpdateMode.UpToDate
+                    RouteMode.Allow
                 ),
 
                 new RoutingConfigurationEntry(
                     "production",
                     "ios",
                     "0.0.0",
+                    toVersion:"",
                     "production",
-                    UpdateMode.UpToDate
+                    RouteMode.Allow
                 ),
                 new RoutingConfigurationEntry(
                     "production",
                     "android",
                     "0.0.0",
+                    toVersion:"",
                     "production",
-                    UpdateMode.UpToDate
+                    RouteMode.Allow
                 )
             }
         );

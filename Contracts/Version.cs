@@ -2,7 +2,7 @@ using System;
 
 namespace Router.Contracts
 {
-    public struct ClientBuildVersion : IEquatable<ClientBuildVersion>, IComparable<ClientBuildVersion>
+    public readonly struct Version : IEquatable<Version>, IComparable<Version>
     {
         private const char Separator = '.';
 
@@ -12,15 +12,21 @@ namespace Router.Contracts
 
         public int C { get; }
 
-        public ClientBuildVersion(int a, int b, int c)
+        public Version(int a, int b, int c)
         {
             A = a;
             B = b;
             C = c;
         }
 
-        public static ClientBuildVersion Parse(string source)
+        public static Version Parse(string source)
         {
+            // Empty or null string considered as an infinity
+            if (string.IsNullOrEmpty(source))
+            {
+                return new Version(int.MaxValue, int.MaxValue, int.MaxValue);
+            }
+            
             var split = source.Split(new[] {Separator}, StringSplitOptions.RemoveEmptyEntries);
 
             if (split.Length != 3)
@@ -28,14 +34,14 @@ namespace Router.Contracts
                 throw new ArgumentException("Input string format is incorrect. Should be 'X.X.X'");
             }
 
-            return new ClientBuildVersion(
+            return new Version(
                 int.Parse(split[0]),
                 int.Parse(split[1]),
                 int.Parse(split[2])
             );
         }
 
-        public static bool TryParse(string source, out ClientBuildVersion result)
+        public static bool TryParse(string source, out Version result)
         {
             try
             {
@@ -44,12 +50,12 @@ namespace Router.Contracts
             }
             catch
             {
-                result = default(ClientBuildVersion);
+                result = default;
                 return false;
             }
         }
 
-        public bool Equals(ClientBuildVersion other)
+        public bool Equals(Version other)
         {
             return A == other.A && B == other.B && C == other.C;
         }
@@ -61,7 +67,7 @@ namespace Router.Contracts
                 return false;
             }
 
-            return obj is ClientBuildVersion other && Equals(other);
+            return obj is Version other && Equals(other);
         }
 
         public override int GetHashCode()
@@ -74,7 +80,7 @@ namespace Router.Contracts
             return hashCode;
         }
 
-        public int CompareTo(ClientBuildVersion other)
+        public int CompareTo(Version other)
         {
             var aComparison = A.CompareTo(other.A);
             if (aComparison != 0)
@@ -96,32 +102,32 @@ namespace Router.Contracts
             return $"{A}{Separator}{B}{Separator}{C}";
         }
 
-        public static bool operator ==(ClientBuildVersion left, ClientBuildVersion right)
+        public static bool operator ==(Version left, Version right)
         {
             return Equals(left, right);
         }
 
-        public static bool operator !=(ClientBuildVersion left, ClientBuildVersion right)
+        public static bool operator !=(Version left, Version right)
         {
             return !Equals(left, right);
         }
 
-        public static bool operator <(ClientBuildVersion left, ClientBuildVersion right)
+        public static bool operator <(Version left, Version right)
         {
             return left.CompareTo(right) < 0;
         }
 
-        public static bool operator >(ClientBuildVersion left, ClientBuildVersion right)
+        public static bool operator >(Version left, Version right)
         {
             return left.CompareTo(right) > 0;
         }
 
-        public static bool operator <=(ClientBuildVersion left, ClientBuildVersion right)
+        public static bool operator <=(Version left, Version right)
         {
             return left.CompareTo(right) <= 0;
         }
 
-        public static bool operator >=(ClientBuildVersion left, ClientBuildVersion right)
+        public static bool operator >=(Version left, Version right)
         {
             return left.CompareTo(right) >= 0;
         }

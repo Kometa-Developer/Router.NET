@@ -12,9 +12,10 @@ namespace Router.Handlers
         protected override GetRoutingConfigurationResponse.ReturnCode BadRequest => GetRoutingConfigurationResponse.ReturnCode.BadRequest;
         protected override GetRoutingConfigurationResponse.ReturnCode InternalServerError => GetRoutingConfigurationResponse.ReturnCode.InternalServerError;
         
-        protected override GetRoutingConfigurationResponse.ReturnCode Validate(GetRoutingConfigurationRequest request)
+        protected override Task<GetRoutingConfigurationResponse.ReturnCode> Validate(
+            GetRoutingConfigurationRequest request, IRoutingConfigurationReadOnlyStorage storage)
         {
-            return Ok;
+            return Task.FromResult(Ok);
         }
 
         protected override GetRoutingConfigurationResponse RespondWithError(GetRoutingConfigurationResponse.ReturnCode errorCode)

@@ -32,7 +32,7 @@ namespace Router.Handlers.Abstraction
                     }
                 }
 
-                var code = Validate(request);
+                var code = await Validate(request, configurationStorage);
 
                 return Equals(code, Ok)
                     ? await ProcessValidRequest(request, configurationStorage)
@@ -45,7 +45,8 @@ namespace Router.Handlers.Abstraction
             }
         }
 
-        protected abstract TCode Validate(TRequest request);
+        protected abstract Task<TCode> Validate(TRequest request,
+            IRoutingConfigurationReadOnlyStorage configurationStorage);
         protected abstract TResponse RespondWithError(TCode errorCode);
         protected abstract Task<TResponse> ProcessValidRequest(
             TRequest request,

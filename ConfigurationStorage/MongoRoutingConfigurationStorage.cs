@@ -97,9 +97,10 @@ namespace Router.ConfigurationStorage
             return new RoutingConfigurationEntry(
                 entity.Server,
                 entity.Platform,
-                entity.ClientVersion,
+                entity.FromVersion,
+                entity.ToVersion,
                 entity.RouteTarget,
-                entity.UpdateMode
+                entity.RouteMode
             );
         }
         
@@ -108,9 +109,10 @@ namespace Router.ConfigurationStorage
             return new RoutingEntity(
                 entry.Server,
                 entry.Platform,
-                entry.ClientVersion,
+                entry.FromVersion,
+                entry.ToVersion,
                 entry.RouteTarget,
-                entry.UpdateMode
+                entry.RouteMode
             );
 
         }

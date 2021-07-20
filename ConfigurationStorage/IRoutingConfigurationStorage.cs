@@ -3,17 +3,18 @@ using Router.Model.Configuration;
 
 namespace Router.ConfigurationStorage
 {
-    public interface IRoutingConfigurationStorage
+    public interface IRoutingConfigurationStorage : IRoutingConfigurationReadOnlyStorage
     {
-        Task<RoutingConfiguration> GetRoutingConfiguration();
         Task SetRoutingConfiguration(RoutingConfiguration configuration);
-
-        Task<RouteTargetConfiguration> GetRouteTargetConfiguration();
         Task SetRouteTargetConfiguration(RouteTargetConfiguration configuration);
-        
         Task BeginServerMaintenance(string target);
         Task FinishServerMaintenance(string target);
+    }
 
+    public interface IRoutingConfigurationReadOnlyStorage
+    {
+        Task<RoutingConfiguration> GetRoutingConfiguration();
+        Task<RouteTargetConfiguration> GetRouteTargetConfiguration();
         Task<RouteTargetConfigurationEntry> GetRouteTarget(string target);
         Task<RoutingConfigurationEntry[]> GetRouting(string serverType);
     }

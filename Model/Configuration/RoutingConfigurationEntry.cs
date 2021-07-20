@@ -6,29 +6,29 @@ namespace Router.Model.Configuration
     public class RoutingConfigurationEntry
     {
         public string Server { get; }
-        
         public string Platform { get; }
-        
-        public string ClientVersion { get; }
-        
+        public string FromVersion { get; }
+        public string ToVersion { get; }
         public string RouteTarget { get; }
         
         [JsonConverter(typeof(StringEnumConverter))]
-        public UpdateMode UpdateMode { get; }
+        public RouteMode RouteMode { get; }
 
         public RoutingConfigurationEntry(
             string server, 
             string platform, 
-            string clientVersion, 
+            string fromVersion, 
+            string toVersion, 
             string routeTarget, 
-            UpdateMode updateMode
+            RouteMode routeMode
         )
         {
             Server = server;
             Platform = platform;
-            ClientVersion = clientVersion;
+            FromVersion = fromVersion;
+            ToVersion = toVersion;
             RouteTarget = routeTarget;
-            UpdateMode = updateMode;
+            RouteMode = routeMode;
         }
     }
 }

@@ -1,7 +1,6 @@
 using System;
 using System.Linq;
 using System.Threading.Tasks;
-using Amazon;
 using Amazon.DynamoDBv2;
 using Amazon.DynamoDBv2.DataModel;
 using Router.ConfigurationStorage.DynamoDb;
@@ -17,7 +16,7 @@ namespace Router.ConfigurationStorage
         private readonly AmazonDynamoDBClient _client;
         private readonly DynamoDBContext _context;
 
-        private const string TablePrefix = "router-";
+        private const string TablePrefix = "router-configs-";
     
         public DynamoDbRoutingConfigurationStorage()
         {
@@ -30,7 +29,7 @@ namespace Router.ConfigurationStorage
             const string AWSAccessKeyId = "";
             const string AWSSecret = "";
         
-            var endpoint = RegionEndpoint.EUCentral1;        
+            var endpoint = Amazon.RegionEndpoint.EUCentral1;        
              
             var config = new AmazonDynamoDBConfig
             {
@@ -56,7 +55,7 @@ namespace Router.ConfigurationStorage
             var routes = documents
                 .Select(FromDocument)
                 .OrderBy(x => x.Server)
-                .ThenBy(x => int.Parse(x.ClientVersion.Substring(x.ClientVersion.LastIndexOf(".", StringComparison.Ordinal) + 1)))
+                .ThenBy(x => int.Parse(x.FromVersion.Substring(x.FromVersion.LastIndexOf(".", StringComparison.Ordinal) + 1)))
                 .ThenBy(x => x.Platform)
                 .ToArray();
             
@@ -201,9 +200,10 @@ namespace Router.ConfigurationStorage
             return new RoutingConfigurationEntry(
                 arg.Server,
                 arg.Platform,
-                arg.ClientVersion,
+                arg.FromVersion,
+                arg.ToVersion,
                 arg.RouteTarget,
-                arg.UpdateMode
+                arg.RouteMode
             );
         }
 
@@ -212,9 +212,10 @@ namespace Router.ConfigurationStorage
             return new RoutingDocument(
                 arg.Server,
                 arg.Platform,
-                arg.ClientVersion,
+                arg.FromVersion,
+                arg.ToVersion,
                 arg.RouteTarget,
-                arg.UpdateMode
+                arg.RouteMode
             );
         }
     }
