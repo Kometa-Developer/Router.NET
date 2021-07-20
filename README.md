@@ -64,6 +64,8 @@ to execute DynamoDB locally
 see arguments explanation here:
 https://docs.docker.com/engine/reference/commandline/run/
 
+To connect to DynamoDB locally using GUI use [NoSQL Workbench](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/workbench.html)
+
 ### MongoDB
 
 There is also implementation for MongoDB as a storage.
