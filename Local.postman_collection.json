@@ -1,0 +1,254 @@
+{
+	"info": {
+		"_postman_id": "b6ae8216-afcb-4174-b415-386008c6c285",
+		"name": "Local Router.NET API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get Routing Configuration",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "token",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/get-routing-configuration",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"get-routing-configuration"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Set Routing Configuration",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "token",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"Code\": \"Ok\",\n    \"Configuration\": {\n        \"Entries\": [\n            {\n                \"Server\": \"development\",\n                \"Platform\": \"ios\",\n                \"FromVersion\": \"0.0.0\",\n                \"RouteTarget\": \"development\",\n                \"RouteMode\": \"Allow\"\n            },\n            {\n                \"Server\": \"development\",\n                \"Platform\": \"android\",\n                \"FromVersion\": \"0.0.0\",\n                \"RouteTarget\": \"development\",\n                \"RouteMode\": \"Allow\"\n            },\n            {\n                \"Server\": \"review\",\n                \"Platform\": \"ios\",\n                \"FromVersion\": \"0.3.0\",\n                \"RouteTarget\": \"review\",\n                \"RouteMode\": \"Allow\"\n            },\n            {\n                \"Server\": \"review\",\n                \"Platform\": \"android\",\n                \"FromVersion\": \"0.3.0\",\n                \"RouteTarget\": \"review\",\n                \"RouteMode\": \"Allow\"\n            },\n            {\n                \"Server\": \"production\",\n                \"Platform\": \"ios\",\n                \"FromVersion\": \"0.17.23\",\n                \"ToVersion\": \"0.17.28\",\n                \"RouteTarget\": \"review\",\n                \"RouteMode\": \"Allow\"\n            },\n            {\n                \"Server\": \"production\",\n                \"Platform\": \"ios\",\n                \"FromVersion\": \"0.17.29\",\n                \"RouteTarget\": \"production\",\n                \"RouteMode\": \"Allow\"\n            },\n            {\n                \"Server\": \"production\",\n                \"Platform\": \"android\",\n                \"FromVersion\": \"0.17.23\",\n                \"RouteTarget\": \"production\",\n                \"RouteMode\": \"Allow\"\n            }\n        ]\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/set-routing-configuration",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"set-routing-configuration"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Route Target Configuration",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "token",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/get-route-target-configuration",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"get-route-target-configuration"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Set Route Target Configuration",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "token",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"Code\": \"Ok\",\n    \"Configuration\": {\n        \"Entries\": [\n            {\n                \"Target\": \"development\",\n                \"Address\": \"http://development.cloud\",\n                \"Maintenance\": false\n            },\n            {\n                \"Target\": \"review\",\n                \"Address\": \"http://review.cloud\",\n                \"Maintenance\": false\n            },\n            {\n                \"Target\": \"production\",\n                \"Address\": \"https://production.cloud\",\n                \"Maintenance\": false\n            },\n            {\n                \"Target\": \"maintenance\",\n                \"Address\": \"\",\n                \"Maintenance\": true\n            }\n        ]\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/set-route-target-configuration",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"set-route-target-configuration"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Begin Maintenance",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "token",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"RouteTarget\": \"production\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/set-maintenance-on",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"set-maintenance-on"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Finish Maintenance",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "token",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"RouteTarget\": \"production\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/set-maintenance-off",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"set-maintenance-off"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Server Address",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"Server\": \"production\",\n  \"ClientPlatform\": \"ios\",\n  \"ClientVersion\": \"0.17.30\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/get-server-address",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"get-server-address"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
