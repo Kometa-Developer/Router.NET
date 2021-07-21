@@ -7,14 +7,14 @@
 
 First, this is a sample .NET Core AWS Lambda application with DynamoDB and MongoDB storage implementations.
 
-Secondly, this is an API for giving you client apps the server url they have to work with.
+Secondly, this is an API for giving you client apps the server URL they have to work with.
 
 It can be handy for example in the following scenario:
 
 Say you have an iOS app, and you have to release a new version: 0.18.0. 
-This new version has to be released to the App Store via review process. You build this app, and it targets Production server.
-For the time of the review process you want it to use some non-production server called Review.
-So you instruct Router to redirect iOS clients of version 0.18.0 to Review server.
+This new version has to be released to the App Store via the review process. You build this app, and it targets the Production server.
+For the time of the review process, you want it to use some non-production server called Review.
+So you instruct Router to redirect iOS clients of version 0.18.0 to the Review server.
 When the review process is done and restores Router to target 0.18.0 to production.
 
 There are many more cases like enabling server maintenance or requesting clients to update via this tool.
