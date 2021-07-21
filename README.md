@@ -1,12 +1,29 @@
 # Router.NET
 
-![stability-wip](https://img.shields.io/badge/stability-work_in_progress-lightgrey.svg)
+![stability-stable](https://img.shields.io/badge/stability-stable-green.svg)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## What is it
 
-This is an AWS Lambda .NET Core function API which can be used for:
-- routing your clients towards different servers
-- informing clients whether they need to update or that there is maintenance going on the particular server
+First, this is a sample .NET Core AWS Lambda application with DynamoDB and MongoDB storage implementations.
+
+Secondly, this is an API for giving you client apps the server url they have to work with.
+
+It can be handy for example in the following scenario:
+
+Say you have an iOS app, and you have to release a new version: 0.18.0. 
+This new version has to be released to the App Store via review process. You build this app, and it targets Production server.
+For the time of the review process you want it to use some non-production server called Review.
+So you instruct Router to redirect iOS clients of version 0.18.0 to Review server.
+When the review process is done and restores Router to target 0.18.0 to production.
+
+There are many more cases like enabling server maintenance or requesting clients to update via this tool.
+
+See example [Postman collection](./Local.postman_collection.json)
+To initialize it call APIs with default presets:
+* Set Route Target Configuration
+* Set Routing Configuration
+* then use Get Server Address to emulate client app calls 
 
 ## Tutorial
 
@@ -51,6 +68,8 @@ Run it with:
 sam local start-api
 ```
 
+## Storages
+
 ### DynamoDB
 
 Simply run 
@@ -69,3 +88,5 @@ To connect to DynamoDB locally using GUI use [NoSQL Workbench](https://docs.aws.
 ### MongoDB
 
 There is also implementation for MongoDB as a storage.
+
+Any Mongo hosting is fine but for ease of use you can set up the [MongoDB Atlas](https://www.mongodb.com/) Free Tier.
